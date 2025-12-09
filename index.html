@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>READ India Championship – MMR Pilot (11–13 yrs)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #1468c1;
+      --primary-soft: #e5f1ff;
+      --accent: #ffb703;
+      --bg: #f5f7fb;
+      --text: #222;
+      --muted: #666;
+      --card: #ffffff;
+      --border: #e0e4ee;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f4aa8, #1b7ed6);
+      border-radius: 18px;
+      padding: 28px 24px;
+      color: #fff;
+      margin-bottom: 24px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+
+    header h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.95;
+      max-width: 700px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag span {
+      font-size: 0.9rem;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 2.1fr 1.1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    section.card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 14px rgba(15, 30, 70, 0.06);
+    }
+
+    section.card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h4 {
+      font-size: 0.95rem;
+      margin: 12px 0 4px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #d4e4ff;
+    }
+
+    ul {
+      list-style: disc;
+      margin-left: 18px;
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .key-line {
+      font-weight: 600;
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+
+    .highlight-box {
+      background: var(--primary-soft);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid #d4e4ff;
+      margin-top: 8px;
+      font-size: 0.88rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 0.88rem;
+    }
+
+    .score-table th,
+    .score-table td {
+      border: 1px solid var(--border);
+      padding: 4px 6px;
+      text-align: left;
+    }
+
+    .score-table th {
+      background: #f4f6fc;
+      font-weight: 600;
+    }
+
+    .sidebar-box {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px 14px 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 14px rgba(15, 30, 70, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-box h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin: 2px 0;
+    }
+
+    .stat-label {
+      color: var(--muted);
+    }
+
+    .stat-value {
+      font-weight: 600;
+    }
+
+    .cta-panel {
+      margin-top: 10px;
+      border-radius: 14px;
+      padding: 10px 12px 12px;
+      background: #0f4aa8;
+      color: #fff;
+    }
+
+    .cta-panel p {
+      font-size: 0.86rem;
+      margin-bottom: 8px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1c2833;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .timeline {
+      margin-top: 6px;
+      font-size: 0.86rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 6px;
+    }
+
+    .timeline-label {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #eef2ff;
+      color: #4a56b8;
+      margin-left: 4px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>READ INDIA CHAMPIONSHIP – MMR PILOT</h1>
+      <h2>Age Group 11–13 Years • 1,000 Students • 5-Week Execution Plan</h2>
+      <p>
+        A focused pilot in the Mumbai Metropolitan Region (MMR) to validate
+        demand, engagement, and learning outcomes for an AI-powered reading
+        assessment & championship, before scaling to an all-India competition.
+      </p>
+      <div class="tag-row">
+        <div class="tag"><span>🎯</span><span>Target: 1,000 paid participants</span></div>
+        <div class="tag"><span📍</span><span>Region: MMR (Mumbai, Navi Mumbai, Thane, etc.)</span></div>
+        <div class="tag"><span>🧒</span><span>Age: 11–13 years (Grades 6–8)</span></div>
+        <div class="tag"><span>💰</span><span>Entry Fee: ₹200 per student</span></div>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- ELIGIBILITY -->
+        <section class="card">
+          <h3>🟦 1. Eligibility, Qualification & Fees</h3>
+          <div class="grid-2">
+            <div>
+              <h4>Age Group & Region</h4>
+              <ul>
+                <li><strong>Age:</strong> 11–13 years (Grades 6–8)</li>
+                <li>
+                  <strong>Region:</strong> Mumbai Metropolitan Region (MMR) –
+                  Mumbai, Navi Mumbai, Thane, Mira Road, Vasai–Virar,
+                  Kalyan–Dombivli, Panvel
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4>Fees & Inclusions</h4>
+              <ul>
+                <li><strong>Entry Fee:</strong> ₹200 per student</li>
+                <li>15-day Reading Challenge (Round 1)</li>
+                <li>AI-powered Reading Report</li>
+                <li>Digital Certificate</li>
+                <li>Eligibility for Round 2 & Regional Finals</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>Minimum Device Requirements</h4>
+          <ul>
+            <li>Smartphone / Tablet / Laptop with front camera</li>
+            <li>Android or iOS supported</li>
+            <li>Stable internet (4G/5G/WiFi)</li>
+            <li>Quiet environment for 5–10 minutes daily</li>
+            <li>Only one child per device during test</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>Important:</strong> This is a <em>self-attempt</em> reading
+            assessment. Parents or elders must not assist during tasks.
+          </div>
+        </section>
+
+        <!-- COMPETITION STRUCTURE -->
+        <section class="card">
+          <h3>🟦 2. Competition Structure (3 Rounds)</h3>
+
+          <h4>⭐ Round 1 — 15-Day Reading Challenge (Online)</h4>
+          <p class="key-line">
+            Goal: Filter 1,000 students → Top 100 • Daily Time: 5–10 minutes
+          </p>
+          <ul>
+            <li>AI Eye-Tracking Reading Test (short passages)</li>
+            <li>Micro comprehension (1–2 questions)</li>
+            <li>Vocabulary check (2–3 words)</li>
+            <li>Daily streak tracker & consistency score</li>
+            <li>Improvement scoring across 15 days</li>
+          </ul>
+
+          <h4>Scoring (100 Points)</h4>
+          <table class="score-table">
+            <tr>
+              <th>Component</th>
+              <th>Weight</th>
+            </tr>
+            <tr>
+              <td>Reading Skill (AI metrics)</td>
+              <td>60 points</td>
+            </tr>
+            <tr>
+              <td>Comprehension</td>
+              <td>10 points</td>
+            </tr>
+            <tr>
+              <td>Vocabulary</td>
+              <td>5 points</td>
+            </tr>
+            <tr>
+              <td>Consistency (daily participation)</td>
+              <td>15 points</td>
+            </tr>
+            <tr>
+              <td>Improvement (Day 1 → Day 15)</td>
+              <td>10 points</td>
+            </tr>
+          </table>
+
+          <div class="highlight-box">
+            <strong>Outcome:</strong> Top 100 students (based on the 100-point
+            score and tie-breakers) qualify for Round 2. Leaderboard (ID only)
+            is updated every 48 hours.
+          </div>
+
+          <h4 style="margin-top: 14px;">⭐ Round 2 — Advanced Reading Round (Online)</h4>
+          <p class="key-line">
+            Goal: Top 100 → Top 10 finalists • Duration: 3–5 days
+          </p>
+          <ul>
+            <li>Longer, more complex reading passages</li>
+            <li>Higher-order comprehension questions</li>
+            <li>Focus & stability analysis using gaze data</li>
+            <li>Short summary writing task</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>Outcome:</strong> Top 10 students selected for Round 3
+            (Regional Finals) based on stricter scoring and qualitative review.
+          </div>
+
+          <h4 style="margin-top: 14px;">⭐ Round 3 — Regional Finals (Offline / Verified)</h4>
+          <p class="key-line">Goal: Select 1 Regional Winner from MMR</p>
+          <ul>
+            <li>Conducted at a physical venue in MMR</li>
+            <li>Live reading test under supervision</li>
+            <li>Advanced comprehension and on-spot summary writing</li>
+            <li>Student identity verification</li>
+            <li>Invigilated environment to ensure fairness</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>Outcome:</strong>
+            <ul>
+              <li>🏆 1 MMR Champion qualifies for the National Championship</li>
+              <li>Top 10 finalists receive recognition & certificates</li>
+              <li>National-level winners become eligible for the Korea Education Trip</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- OUTREACH PLAN -->
+        <section class="card">
+          <h3>🟦 3. Outreach Plan (Channels & Assets)</h3>
+
+          <h4>1. Webpage / Microsite</h4>
+          <ul>
+            <li>Hero banner with “MMR Reading Championship (Age 11–13) – 1,000 Seats Only”</li>
+            <li>Embedded registration form & payment button (Razorpay)</li>
+            <li>WhatsApp group join button for instructions</li>
+            <li>Competition rules & structure (3 rounds)</li>
+            <li>Rewards: report, certificate, Top 100, Top 10, Korea trip (national)</li>
+            <li>Daily leaderboard section (ID-only, 48-hour updates)</li>
+            <li>FAQs for parents (devices, AI reading, age rationale)</li>
+            <li>Support contact via WhatsApp link</li>
+          </ul>
+
+          <h4>2. Influencer Partnerships (₹10k–₹50k / Barter)</h4>
+          <ul>
+            <li>Local mom influencers in MMR</li>
+            <li>Teen-safe creators followed by 11–13 age group</li>
+            <li>English / reading educators on Instagram & YouTube</li>
+            <li>Deliverables: 2 reels/week, 4–5 stories, “Last 24 hours” push</li>
+            <li>Models: micro-influencers (₹3k–₹10k), barter (value + report access), or revenue-share (e.g., ₹40 per registration)</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>Influencer Message:</strong>
+            “Help students in Mumbai improve reading skills through AI. Top
+            performers progress to regional finals and the national
+            championship.”
+          </div>
+
+          <h4>3. Teacher Partnerships</h4>
+          <ul>
+            <li>Target: English teachers, librarians, tuition teachers, school coordinators, reading club mentors</li>
+            <li>Teachers share posters in class groups & talk to parents during PTMs</li>
+            <li>Optional teacher benefits:
+              <ul>
+                <li>Free preview of teacher dashboard</li>
+                <li>Certificate of partnership</li>
+                <li>Recognition (logo/name) on website</li>
+                <li>Optional revenue share: ₹20–₹30 per registration</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>4. School Partnerships (Zero / Low Cost)</h4>
+          <ul>
+            <li>Start with Navi Mumbai, Thane, Airoli, Kalyan, Mira Road, Panvel</li>
+            <li>No fee from school – only permission to circulate posters</li>
+            <li>Positioning for principals:
+              <em>“Scientific reading assessment using eye-tracking technology for Grades 6–8, aligned with NEP literacy goals.”</em>
+            </li>
+            <li>Benefits for schools:
+              <ul>
+                <li>Recognition for top 3 participating schools</li>
+                <li>School logo featured on website</li>
+                <li>Certificates for their participating students</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>5. Instagram / Meta Ads (₹10,000 Budget)</h4>
+          <ul>
+            <li>Goal: Trust & visibility (not purely performance marketing)</li>
+            <li>Target: Women 28–45 in MMR (mothers of school-going children)</li>
+            <li>Interests: Education, parenting, reading, school activities</li>
+            <li>Content Plan (~20 pieces):
+              <ul>
+                <li>5 reels (explainer + testimonials + Korea hook)</li>
+                <li>5 quote cards (reading & focus)</li>
+                <li>5 reading tips for parents</li>
+                <li>3 student/parent testimonials</li>
+                <li>2 report preview posts</li>
+              </ul>
+            </li>
+            <li>₹10k estimated to reach 30,000+ parents in MMR</li>
+          </ul>
+
+          <h4>6. WhatsApp Banners / Pamphlets (3–5 Creatives)</h4>
+          <ul>
+            <li>1080x1920, minimal text, WhatsApp-friendly</li>
+            <li>Suggested creatives:
+              <ul>
+                <li>Competition Launch Banner</li>
+                <li>“Age 11–13 Only — 1,000 Seats”</li>
+                <li>Benefits: AI Reading Report + Certificate + Korea Trip (National)</li>
+                <li>How to Register (Step-by-step with QR/links)</li>
+                <li>“Last 48 Hours” urgency banner</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <!-- EXECUTION PLAN -->
+        <section class="card">
+          <h3>🟦 4. Execution Plan (5 Weeks)</h3>
+          <p class="muted">
+            The pilot is designed for fast validation with controlled spend and
+            clear weekly goals.
+          </p>
+
+          <h4>Week 1 — Setup & Partnerships (Foundation)</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-label">Deliverables:</span>
+              <ul>
+                <li>Webpage / microsite launched</li>
+                <li>Instagram page set up</li>
+                <li>2 core banners ready (launch + age-group)</li>
+                <li>Influencer outreach list prepared; 3–5 confirmations</li>
+                <li>Teacher & librarian outreach started</li>
+                <li>School coordinator conversations initiated</li>
+                <li>Payment links & onboarding flow tested end-to-end</li>
+                <li>WhatsApp onboarding group created</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-label">Focus:</span>
+              <span>Visibility, trust-building, and marketing engine setup.</span>
+            </div>
+          </div>
+
+          <h4>Week 2 — Registration Rollout</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-label">Activities:</span>
+              <ul>
+                <li>Open official registrations</li>
+                <li>Influencer posts start (intro + awareness)</li>
+                <li>Teachers share posters in class/parent groups</li>
+                <li>Schools circulate internal announcement</li>
+                <li>5 content posts published on Instagram</li>
+                <li>Daily WhatsApp status posts</li>
+                <li>Parent FAQs actively answered via WhatsApp/DMs</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-label">Goal:</span>
+              <span>~300 registrations by end of Week 2</span>
+            </div>
+          </div>
+
+          <h4>Week 3 — Peak Registration Push</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-label">Activities:</span>
+              <ul>
+                <li>Influencers post 2–3 reels this week</li>
+                <li>Second reminder push from teachers</li>
+                <li>Schools reminded to re-share in their networks</li>
+                <li>Launch Meta ads (~₹5,000 spend)</li>
+                <li>“Limited Seats” & urgency-based creatives pushed</li>
+                <li>Sample AI Reading Report shared publicly</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-label">Goal:</span>
+              <span>600–700 total registrations by end of Week 3</span>
+            </div>
+          </div>
+
+          <h4>Week 4 — Final Registration Week (Closing)</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-label">Activities:</span>
+              <ul>
+                <li>Final ₹5,000 ad spend on high-intent audiences</li>
+                <li>“Last 48 hours” influencer push & stories</li>
+                <li>WhatsApp broadcast messages to all leads/groups</li>
+                <li>Daily countdown posts on Instagram</li>
+                <li>Banner: “1,000 Seats Almost Full”</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-label">Goal:</span>
+              <span>Reach full 1,000 registrations by end of Week 4</span>
+            </div>
+          </div>
+
+          <h4>Week 5 — Competition Kick-Off (Round 1)</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-label">Deliverables:</span>
+              <ul>
+                <li>Day 1 onboarding & “How to attempt” guide</li>
+                <li>Daily reminders (test window) via WhatsApp</li>
+                <li>Leaderboard published every 48 hours</li>
+                <li>Motivational updates for students & parents</li>
+                <li>Active technical & support channel</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-label">Goal:</span>
+              <span>80%+ daily participation and clear Top 100 by end of Round 1</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN (SIDEBAR) -->
+      <aside>
+        <div class="sidebar-box">
+          <h3>📊 Pilot at a Glance</h3>
+          <div class="stat-row">
+            <span class="stat-label">Target Students</span>
+            <span class="stat-value">1,000</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Age Group</span>
+            <span class="stat-value">11–13 yrs</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Region</span>
+            <span class="stat-value">MMR</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Entry Fee</span>
+            <span class="stat-value">₹200</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Pilot Duration</span>
+            <span class="stat-value">5 weeks</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Core Round</span>
+            <span class="stat-value">15 days (online)</span>
+          </div>
+
+          <div class="highlight-box" style="margin-top:10px;">
+            <strong>Key Outcomes for Management:</strong>
+            <ul>
+              <li>Validated product–market fit in MMR</li>
+              <li>Real reading & engagement data for 1,000 students</li>
+              <li>Operational blueprint for all-India rollout</li>
+              <li>Case study: MMR Champion → National stage</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>🧩 Why This Pilot Matters</h3>
+          <p class="muted">
+            This pilot de-risks national expansion by testing:
+          </p>
+          <ul>
+            <li>Parent willingness to pay for AI reading assessment</li>
+            <li>Student engagement over 15 days</li>
+            <li>Scalability of tech & support operations</li>
+            <li>Effectiveness of influencer + teacher + school channels</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>🚀 Quick Call To Action</h3>
+          <div class="cta-panel">
+            <p>
+              <strong>Next Step:</strong> Approve and green-light the MMR pilot
+              so we can:
+            </p>
+            <ul style="margin-left:16px; font-size:0.82rem;">
+              <li>Build the microsite & onboarding flow</li>
+              <li>Lock initial influencers & teacher partners</li>
+              <li>Start Week 1 execution within the next cycle</li>
+            </ul>
+            <div class="btn-row" style="margin-top:10px;">
+              <a href="#" class="btn btn-primary">Approve Pilot</a>
+              <a href="#" class="btn btn-outline">View Detailed Budget</a>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:10px;">
+            Once approved, we can launch within 7–10 working days (including
+            webpage, creatives, and outreach setup).
+          </p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      READ India Championship – MMR Pilot • Internal Concept Page for Management Review
+    </footer>
+  </div>
+</body>
+</html>
